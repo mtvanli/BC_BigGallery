@@ -1,0 +1,40 @@
+<!-- {{#each product.custom_fields}} {{#if name '!==' 'Store'}} {{#if value '!=='
+'na'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}} {{/if}} {{/each}}
+
+-->
+
+{{#each product.custom_fields}} {{#if name '!==' 'Store'}} {{#if value '!=='
+'na'}} {{#if name '===' 'Presentation'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}}{{/if}} {{/if}} {{/each}} {{#each product.custom_fields}} {{#if name
+'!==' 'Store'}} {{#if value '!==' 'na'}} {{#if name '===' 'Segment'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}} {{/if}} {{/if}} {{/each}} {{#each product.custom_fields}} {{#if name
+'!==' 'Store'}} {{#if value '!==' 'na'}} {{#if name '===' 'Channel'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}} {{/if}} {{/if}} {{/each}} {{#each product.custom_fields}} {{#if name
+'!==' 'Store'}} {{#if value '!==' 'na'}} {{#if name '===' 'Industry'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}} {{/if}} {{/if}} {{/each}} {{#each product.custom_fields}} {{#if name
+'!==' 'Store'}} {{#if value '!==' 'na'}} {{#if name '===' 'Region'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}} {{/if}} {{/if}} {{/each}} {{#each product.custom_fields}} {{#if name
+'!==' 'Store'}} {{#if value '!==' 'na'}} {{#if name '===' 'Agency'}}
+<dt class="productView-info-name">{{name}}:</dt>
+<dd class="productView-info-value">{{{value}}}</dd>
+{{/if}}{{/if}} {{/if}} {{/each}}
+<dt class="productView-info-name">Misc:</dt>
+{{#each product.custom_fields}} {{#if name '!==' 'Store'}} {{#if value '!=='
+'na'}} {{#if value '!==' 'na_'}} {{#if name '===' 'Misc'}}
+
+<dt class="productView-info-name"></dt>
+<dd class="productView-info-value">- {{{value}}}</dd>
+{{/if}}{{/if}} {{/if}} {{/if}}{{/each}}

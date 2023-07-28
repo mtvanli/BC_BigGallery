@@ -1,0 +1,56 @@
+// =============================================================================
+// ACTION BAR (CSS)
+// =============================================================================
+
+.actionBar-section {
+	.form-field {
+		//background-color: $input-bg-color;
+		//border: $actionBar-form-field-border;
+		//border-radius: $actionBar-form-field-radius;
+		margin-bottom: 10px;
+
+		&:hover {
+			border-color: stencilColor("input-border-color-active");
+		}
+	}
+
+	.form-label {
+		color: $actionBar-form-label-color;
+		font-size: 1.07143rem;
+		color: #444444;
+		font-family: "Montserrat", Arial, Helvetica, sans-serif;
+
+		//font-size: $actionBar-form-label-fontSize;
+		line-height: $actionBar-form-label-lineHeight;
+		margin-bottom: 0;
+		//padding-left: $actionBar-form-label-padding;
+		padding-left: 0;
+	}
+
+	.form-input,
+	.form-select {
+		//border: 0;
+		//padding-left: $actionBar-form-input-padding;
+		width: 100%;
+	}
+
+	.form-label,
+	.form-input,
+	.form-select {
+		display: inline-block;
+	}
+
+	.form-select {
+		color: stencilColor("color-textLink");
+		height: 2.4rem;
+		//height: $input-small-height - remCalc($input-border-width * 2);
+		font-size: 15px;
+	}
+}
+
+.actionBar {
+	margin-top: 0;
+	//margin-right: 11px;
+	margin-bottom: 1rem;
+	margin-left: 0px;
+}

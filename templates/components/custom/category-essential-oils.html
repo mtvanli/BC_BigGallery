@@ -1,0 +1,11 @@
+<li class="product category-essential-oil-container">
+{{#each breadcrumbs}}
+    {{#if name '==' 'All'}}
+        
+            <img class="category-essential-oil-image lazyload"
+                data-src="https://cdn11.bigcommerce.com/s-4jxqzdkzn5/images/stencil/original/image-manager/bc-award-winner.png"
+                alt="{{ lang (concat 'category-essential-oils-alt-text.' (hyphenate (toLowerCase ../../../category.name))) }}">
+        
+    {{/if}}
+{{/each}}
+</li>

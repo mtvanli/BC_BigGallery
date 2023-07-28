@@ -1,0 +1,184 @@
+<article
+    class="card
+    {{#if alternate}} card--alternate{{/if}}"
+    data-test="card-{{id}}"
+    {{#if settings.data_tag_enabled}}
+        data-event-type="{{event}}"
+        data-entity-id="{{id}}"
+        data-position="{{position}}"
+        data-name="{{name}}"
+        data-product-category="
+        {{#each category}}
+            {{#if @last}}
+                {{this}}
+            {{else}}
+                {{this}},
+            {{/if}}
+        {{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="
+        {{#or customer (unless theme_settings.restrict_to_login)}}
+            {{#if price.with_tax}}
+                {{price.with_tax.value}}
+            {{else}}
+                {{price.without_tax.value}}
+            {{/if}}
+        {{else}}
+            {{lang 'common.login_for_pricing'}}
+        {{/or}}"
+    {{/if}}>
+    <figure class="card-figure">
+        {{#if stock_level '===' 0}}
+            {{#if theme_settings.pdp_sold_out_label '===' ''}}
+                {{> components/products/product-badge
+                    badge-type='sold-out'
+                    badge_view=theme_settings.product_sold_out_badges
+                    badge_label=(lang "page_builder.pdp_sold_out_label")
+                }}
+            {{else}}
+                {{> components/products/product-badge
+                    badge-type='sold-out'
+                    badge_view=theme_settings.product_sold_out_badges
+                    badge_label=theme_settings.pdp_sold_out_label
+                }}
+            {{/if}}
+        {{else}}
+            {{#or price.sale_price_with_tax.value price.sale_price_without_tax.value}}
+                {{#if theme_settings.pdp_sale_badge_label '===' ''}}
+                    {{> components/products/product-badge
+                        badge-type='sale'
+                        badge_view=theme_settings.product_sale_badges
+                        badge_label=(lang "page_builder.pdp_sale_badge_label")
+                    }}
+                {{else}}
+                    {{> components/products/product-badge
+                        badge-type='sale'
+                        badge_view=theme_settings.product_sale_badges
+                        badge_label=theme_settings.pdp_sale_badge_label
+                    }}
+                {{/if}}
+            {{/or}}
+        {{/if}}
+        
+        <!-- if the card is a BC promo open the link in a new tab -->
+        {{#contains name 'BC-Promo'}}
+        <a href="{{url}}" target="_blank" rel="noopener noreferrer" class="card-figure__link" aria-label="{{> components/products/product-info}}"
+            {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+            <div class="card-img-container">
+                {{> components/common/responsive-img
+                            image=image
+                            class="card-image"
+                            fallback_size=theme_settings.productgallery_size
+                            lazyload=theme_settings.lazyload_mode
+                            default_image=theme_settings.default_image_product
+                        }}
+            </div>
+        </a>
+        {{else}}
+        <a href="{{url}}"
+           class="card-figure__link"
+           aria-label="{{> components/products/product-info}}"
+           {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+        >
+            <div class="card-img-container">
+                {{> components/common/responsive-img
+                    image=image
+                    class="card-image"
+                    fallback_size=theme_settings.productgallery_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
+            </div>
+        </a>
+        {{/contains}}
+
+
+        <!-- if the card is a BC promo don't show quick view -->
+        {{#contains name 'BC-Promo'}}
+        {{else}}
+        <figcaption class="card-figcaption">
+            <div class="card-figcaption-body">
+                {{#unless hide_product_quick_view}}
+                    {{#if theme_settings.show_product_quick_view}}
+                        {{#if settings.data_tag_enabled}}
+                            <button type="button" class="button button--small card-figcaption-button quickview" data-event-type="product-click" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
+                        {{else}}
+                            <button type="button" class="button button--small card-figcaption-button quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</button>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
+                {{#if show_compare}}
+                    <label class="button button--small card-figcaption-button" for="compare-{{id}}">
+                        {{lang 'products.compare'}} <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}">
+                    </label>
+                {{/if}}
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{#if show_cart_action}}
+                        {{#if has_options}}
+                            <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                        {{/if}}
+                        {{#if pre_order}}
+                            <a href="{{pre_order_add_to_cart_url}}" data-event-type="product-click" class="button button--small card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                        {{/if}}
+                        {{#if add_to_cart_url }}
+                            <a href="{{add_to_cart_url}}" data-event-type="product-click" data-button-type="add-cart" class="button button--small card-figcaption-button">{{lang 'products.add_to_cart'}}</a>
+                            <span class="product-status-message aria-description--hidden">{{lang 'category.add_cart_announcement'}}</span>
+                        {{/if}}
+                        {{#if out_of_stock_message }}
+                            <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/or}}
+            </div>
+        </figcaption>
+        {{/contains}}
+        
+    </figure>
+    
+    <!-- if the card is a BC promo don't show title -->
+    {{#contains name 'BC-Promo'}}
+    {{else}}
+    <div class="card-body">
+        {{#and rating show_rating}}
+            <p class="card-text" data-test-info-type="productRating">
+                <span class="rating--small">
+                    {{> components/products/ratings rating_target=name rating=rating}}
+                </span>
+            </p>
+        {{/and}}
+        {{#if brand.name}}
+            <p class="card-text" data-test-info-type="brandName">{{brand.name}}</p>
+        {{/if}}
+        <h3 class="card-title" >
+            <a aria-label="{{> components/products/product-info}}"
+               href="{{url}}"
+               {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
+            style="vertical-align:middle">
+                {{name}} 
+            </a>
+            
+            {{#each custom_fields}}
+            {{#if name '===' 'Store'}} 
+            <a href="{{value}}" target="_blank" rel="noopener noreferrer" style="margin-left:0.5em"> &nbsp
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" style="vertical-align:middle">
+                    <path fill="#626262"
+                        d="M5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h6q.425 0 .713.288T12 4q0 .425-.288.713T11 5H5v14h14v-6q0-.425.288-.713T20 12q.425 0 .713.288T21 13v6q0 .825-.588 1.413T19 21H5Zm4-6q-.275-.275-.275-.7T9 13.6L17.6 5H15q-.425 0-.713-.288T14 4q0-.425.288-.713T15 3h5q.425 0 .713.288T21 4v5q0 .425-.288.713T20 10q-.425 0-.713-.288T19 9V6.4l-8.625 8.625q-.275.275-.675.275T9 15Z" />
+                </svg>
+            </a> 
+            {{/if}} 
+            {{/each}}
+            <!-- <a href="{{> components/products/card-custom-fields}}"> Here!
+            </a>  -->
+        </h3>
+
+       <!-- <div class="card-text" data-test-info-type="price">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{> components/products/price price=price}}
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </div> -->
+        {{> components/products/bulk-discount-rates}}
+    </div>
+    {{/contains}}
+</article>

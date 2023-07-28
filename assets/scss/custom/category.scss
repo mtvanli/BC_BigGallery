@@ -1,0 +1,15 @@
+// Essential oils
+// -----------------------------------------------------------------------------
+
+.product {
+    &.category-essential-oil-container {
+        @media (max-width: 100px) {
+            width: 100% !important;
+            
+        }
+        .category-essential-oil-image {
+            width: 100%;
+            
+        }
+    }
+}
