@@ -2,10 +2,14 @@
 <div class="login">
 	{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 	<h1 class="page-heading">{{lang 'login.heading' }}</h1>
-	{{#if forms.login.error}} {{> components/common/alert/alert-error
-	forms.login.error}} {{/if}} {{#if forms.login.success}} {{>
-	components/common/alert/alert-success forms.login.success}} {{/if}}
-	<div class="login-row">
+	{{#if forms.login.error}} 
+		{{> components/common/alert/alert-error forms.login.error}} 
+	{{/if}} 
+	{{#if forms.login.success}} 
+		{{> components/common/alert/alert-success forms.login.success}} 
+	{{/if}}
+	<div>
+	<!-- <div class="login-row"> -->
 		<form
 			class="login-form form"
 			action="{{urls.auth.check_login}}"
