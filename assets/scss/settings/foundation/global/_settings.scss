@@ -77,8 +77,8 @@ $opposite-direction:            right;
 
 
 // We use these to make sure border radius matches unless we want it different.
-$global-radius:                 4px;
-
+//$global-radius:                 4px;
+$global-radius:                 2px;
 
 // We use these to control inset shadow shiny edges and depressions.
 $shiny-edge-size:               null;
