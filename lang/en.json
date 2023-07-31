@@ -898,7 +898,8 @@
 		"page_heading": "Sorry! Please sign in to continue",
 		"if_you_were_signed_in": "If you were signed in,",
 		"sign_in": "please sign back in",
-		"to_continue": ", to resume your work in a new session."
+		"to_continue": "Please sign back in, to resume.",
+		"_comment_to_continue": ", to resume your work in a new session." 
 	},
 	"sitemap": {
 		"page_title": "Sitemap",
