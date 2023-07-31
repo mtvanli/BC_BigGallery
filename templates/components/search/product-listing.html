@@ -1,7 +1,7 @@
 {{inject 'noCompareMessage' (lang 'compare.no_compare')}}
 
 {{#if product_results.products.length}}
-    {{> components/products/filter sort=pagination.product_results.sort}}
+    {{!-- > components/products/filter sort=pagination.product_results.sort --}}
 {{/if}}
 <div {{#if settings.data_tag_enabled}} data-list-name="Search Results" {{/if}}>
     {{#if theme_settings.product_list_display_mode '===' 'grid'}}
@@ -19,7 +19,7 @@
     {{/if}}
     <div class="page-load-status">
             <p class="infinite-scroll-request">Loading...</p>
-            <p class="infinite-scroll-last">End of content</p>
+            <p class="infinite-scroll-last">That's all for now</p>
             <p class="infinite-scroll-error">No more pages to load</p>
           </div>
 </div>
