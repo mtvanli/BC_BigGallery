@@ -1,26 +1,39 @@
 <div>
   <ul
     id="facetedSearch-navList--{{dashcase facet}}"
-    data-facet="{{facet}}"
+    data-facet={{all_facets}}
     class="navList"
   >
-    {{#each facets}} {{#if facet '===' ../all_facets}} {{#each items}} {{#if
-    title '!==' 'na'}} {{#if title '!==' 'na_'}}
-    <li class="navList-item">
-      <a
-        href="{{url}}"
-        class="navList-action navList-action--checkbox{{#if selected}} is-selected{{/if}}"
-        rel="nofollow"
-        data-id="{{id}}"
-        data-faceted-search-facet
-      >
-        {{{title}}} {{#if ../show_product_counts}} {{#if count}}
-        <span>({{count}})</span>
-        {{/if}} {{/if}}
-      </a>
-    </li>
-    {{/if}} {{/if}} {{/each}} {{/if}} {{/each}}
+    {{#each facets}} 
+      {{#if facet '===' ../all_facets}} 
+        {{#each items}} 
+          {{#if title '!==' 'na'}} 
+            {{#if title '!==' 'na_'}}
+            <li class="navList-item">
+            <a  href="{{url}}"
+            class="navList-action navList-action--checkbox{{#if selected}} is-selected{{/if}}"
+            rel="nofollow"
+            data-id="{{id}}"
+            data-faceted-search-facet
+            >
+            {{{title}}}
+              {{#if ../show_product_counts}} 
+                {{#if count}}
+                <span>({{count}})</span>
+                {{/if}} 
+              {{/if}}
+            </a>
+            </li>
+            {{/if}} 
+          {{/if}}
+        {{/each}} 
+      {{/if}} 
+    {{/each}}
+    
+    <!-- <a href="#facetedSearch .facetedSearch-clearLink" role="button" class="toggleLink">
+      <span class="toggleLink-text toggleLink-text--off">Show Less</span></a> -->
   </ul>
+
 </div>
 
 <!-- <div class="modal-body">
@@ -55,3 +68,14 @@
         {{/each}}
     </ul>
 </div> -->
+
+
+<!-- remove the Show More link after clicked once from the facet. I don't like this approach much bit does the job-->
+ <script>
+  try{
+    document.getElementById("{{all_facets}}").remove();
+  }
+  catch(err){}
+    
+</script> 
+ 

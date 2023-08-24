@@ -35,11 +35,14 @@
     </ul>
 
     {{#if show_more_toggle}}
+    <!-- id the a href element with facet name. I remove the element in show-more-facet.html with script -->
     <a
       href="#facetedSearch-navList--{{dashcase facet}}"
       role="button"
       class="toggleLink"
+      id= "{{facet}}" 
     >
+      
       <span class="toggleLink-text toggleLink-text--off"
         >{{lang 'search.faceted.show-more'}}</span
       >
