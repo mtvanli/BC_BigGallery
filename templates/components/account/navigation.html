@@ -27,7 +27,7 @@
         <li class="navBar-item {{#if account_page '===' 'recent_items'}}is-active{{/if}}">
             <a class="navBar-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
         </li> -->
-        <li class="navBar-item"><a class="navBar-action" href="/new"> Test</a></li>
+        
 		<li
 			class="navBar-item {{#if account_page '===' 'settings'}}is-active{{/if}}"
 		>
@@ -35,5 +35,9 @@
 				>{{lang 'account.nav.settings'}} </a
 			>
 		</li>
+
+        <!-- <li class="navBar-item" {{#if account_page '===' 'settings'}}is-active{{/if}}">
+            <a class="navBar-action" href="/bg-admin"> Admin</a>
+        </li> -->
 	</ul>
 </nav>

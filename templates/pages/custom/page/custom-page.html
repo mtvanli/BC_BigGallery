@@ -1,39 +1,20 @@
-{{#partial "page"}} {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#partial "page"}}
 
-This is a custom page
+	<!-- <h1 class="page-heading">{{lang 'account.settings.heading' }}</h1> -->
+	{{!> components/account/navigation account_page='orders'}}
 
-<section class="page">
-	{{#unless theme_settings.hide_page_heading }}
-	<h1 class="page-heading">{{ page.title }}</h1>
-	{{/unless}} {{#if page.sub_pages}}
-	<nav class="navBar navBar--sub">
-		<ul class="navBar-section account-navigation">
-			{{#each page.sub_pages}}
-			<li class="navBar-item">
-				<a class="navBar-action" href="{{url}}">{{title}}</a>
-			</li>
-			{{/each}}
-		</ul>
-	</nav>
-	{{/if}} {{{region name="page_builder_content"}}}
-
-	<div class="page-content page-content--centered">
-		{{#replace '%%Syndicate%%' page.content}} {{> components/page/rss_feed}}
-		{{else}}
-		<p>{{{page.content}}}</p>
-		{{/replace}}
+	<div style="overflow: hidden; width:900px; width:100%; height:1250px">
+		<iframe
+			src="https://app.appsmith.com/app/big-gallery-admin-v3-23012023/login-63cef057af0003311d22dc59?embed=true"
+			width="100%" height="1300px"></iframe>
 	</div>
+{{/partial}}
 
-	{{#if page.feed}}
-	<ul>
-		{{#each page.feed}}
-		<li>
-			<h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
-			<p>{{content}}</p>
-		</li>
-		{{/each}}
-	</ul>
-	{{/if}}
-</section>
+<style>
+	iframe {
 
-{{/partial}} {{> layout/base}}
+		border: 0;
+
+	}
+</style>
+{{> layout/base}}
